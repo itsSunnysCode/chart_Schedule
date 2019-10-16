@@ -6,9 +6,36 @@ class StudentChart extends Component {
 
     //function runs for objective 4
      checkAvailability(){
+       let i=0;
+       let startDate=[];
+       let endDate=[];
+       var days;
        let avail = !this.state.Availability;
        this.setState({Availability: avail});
-    
+       this.props.students.map((student)=>{
+         const {start, end} = student;
+         
+        if(start.substring(3,5)==='01'||start.substring(3,5)==='03'||start.substring(3,5)==='05'||start.substring(3,5)==='07'||start.substring(3,5)==='08'||start.substring(3,5)==='10'||start.substring(3,5)==='12'){
+              days=['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15',
+              '16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
+        }
+        else if(start.substring(3,5)==='04'||start.substring(3,5)==='06'||start.substring(3,5)==='09'||start.substring(3,5)==='11'){
+          days=['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15',
+              '16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'];
+        }
+        else{
+          days=['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15',
+              '16','17','18','19','20','21','22','23','24','25','26','27','28'];
+        }
+         
+        if(days[i]!=start.substring(0,2)){
+          startDate.unshift(days[i]);  
+          i++;
+        }
+       })
+      console.log(startDate);
+      
+      
        
      }
     
@@ -38,7 +65,7 @@ class StudentChart extends Component {
             let dateNumber = start.substring(0,2);
             let  temp = start.substring(3,5);
             let month = temp-1;
-            console.log(month);
+            
             
             let year = start.substring(6,10)          
             let end_dateNumber = end.substring(0,2);
