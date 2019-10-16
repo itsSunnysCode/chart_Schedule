@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import StudentChart from './StudentChart'
+import '../App.css';
+
 
 class Assign extends Component {
     //component lifecycle hook added to fetch API 
@@ -31,7 +34,7 @@ class Assign extends Component {
 
            return (
               <tr key={id}>
-                 <td>{id-1}</td>
+                 <td className="id">{id-1}</td>
                  <td>{name}</td>
                  <td>{startDate}</td>
                  <td>{endDate}</td> 
@@ -55,17 +58,20 @@ class Assign extends Component {
             <div>
             <h1 id='title'>Totalcloud Assignment</h1>
             <table id='students'>
+                    <thead>
                     <tr>
                     <th></th>
                     <th>intern-Assignment</th>
                     <th>start date</th>
                     <th>due date</th>
                     </tr>
+                    </thead>
                <tbody>
                   {this.Table()}
                </tbody>
             </table>
-               
+              
+            <StudentChart students={this.state.students}/>
             </div>
         )
     }
